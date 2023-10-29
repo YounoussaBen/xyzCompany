@@ -1,0 +1,20 @@
+Backend Web Dev in Django
+Accra, Ghana  fullTime 2500 2023-05-31
+Job description
+A backend web developer in Django is a professional responsible for designing, developing, and maintaining the server-side logic and functionality of web applications using the Django framework. Django is a high-level Python web framework known for its simplicity, scalability, and robustness. Backend developers in Django work closely with frontend developers, database administrators, and other stakeholders to ensure the seamless operation and performance of web applications. Here is a list of responsibilities and qualities that are typically required for a backend web developer in Django:
+
+Responsibility
+Magna et elitr diam sed lorem. Diam diam stet erat no est est. Accusam sed lorem stet voluptua sit sit at stet consetetur, takimata at diam kasd gubergren elitr dolor
+
+Developing and implementing server-side logic using Python and the Django framework.
+Designing and creating database schemas and models.
+Writing efficient, reusable, and reliable code to ensure the performance and maintainability of web applications.
+Collaborating with frontend developers to integrate the frontend and backend components seamlessly.
+Qualifications
+Magna et elitr diam sed lorem. Diam diam stet erat no est est. Accusam sed lorem stet voluptua sit sit at stet consetetur, takimata at diam kasd gubergren elitr dolor
+
+Proficiency in Python programming language and a strong understanding of object-oriented programming concepts.
+In-depth knowledge of the Django framework and its various components, such as models, views, templates, and ORM (Object-Relational Mapping).
+Experience with relational databases like PostgreSQL, MySQL, or SQLite, and proficiency in writing optimized database queries.
+Familiarity with front-end technologies like HTML, CSS, and JavaScript, and the ability to collaborate effectively with frontend developers.
+Understanding of web protocols, such as HTTP, RESTful APIs, and experience in developing and consuming APIs.*

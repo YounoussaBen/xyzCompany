@@ -2,8 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
 from .forms import ContactForm
 from .models import JobCategory, Job, Company
-# Create your views here.
-
+from django.core.mail import send_mail, EmailMessage
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from .models import Job
+from .forms import JobApplicationForm
+import mimetypes
 
 
 def home_view(request):
@@ -38,12 +42,61 @@ def category_view(request, category_id):
 
 def job_detail(request, job_id):
     job = get_object_or_404(Job, pk=job_id)
-    
+
+    if request.method == 'POST':
+        form = JobApplicationForm(request.POST, request.FILES)
+        if form.is_valid():
+            application = form.save(commit=False)
+            application.job = job  # Associate the application with the job
+            application.save()
+
+            # Send email to the company with the application data
+            subject = f'New Job Application for {job.title}'
+            message = f'You have received a new job application from {application.name}. Details:\n\n' \
+                      f'Name: {application.name}\n' \
+                      f'Email: {application.email}\n' \
+                      f'Portfolio: {application.portfolio}\n' \
+                      f'Cover Letter:\n{application.cover_letter}\n'
+
+            from_email = 'ads21b00266y@ait.edu.gh'  # Sender's email
+            recipient_list = [job.company.email]  # Company's email
+
+            # Attach the resume file
+            resume = application.resume
+            if resume:
+                email = EmailMessage(
+                    subject, message, from_email, recipient_list
+                )
+
+                # Determine the MIME type of the file
+                content_type, _ = mimetypes.guess_type(resume.name)
+                if not content_type:
+                    content_type = "application/octet-stream"  # Default to binary if MIME type is not found
+
+                email.attach(resume.name, resume.read(), content_type)
+                email.send()
+
+            # Notify the user
+            send_mail(
+                'Application Received',
+                'Your job application has been received. We will get in touch with you soon.',
+                'ads21b00266y@ait.edu.gh',  # Sender's email
+                [application.email],  # User's email
+                fail_silently=False,
+            )
+
+            return redirect('home')  # Redirect to the home page after sending the email
+
+    else:
+        form = JobApplicationForm()
+
     context = {
         'job': job,
+        'form': form,
     }
-    
+
     return render(request, 'job_detail.html', context)
+
 
 def full_time_jobs(request):
     full_time_jobs = Job.objects.filter(job_type='Full Time')
@@ -78,3 +131,4 @@ def contact_view(request):
         form = ContactForm()
 
     return render(request, 'contact.html', {'form': form})
+

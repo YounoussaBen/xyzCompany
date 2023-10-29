@@ -37,3 +37,14 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+class JobApplication(models.Model):
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    portfolio = models.URLField(blank=True)
+    resume = models.FileField(upload_to='job_applications/')
+    cover_letter = models.TextField()
+
+    def __str__(self):
+        return f"Application for {self.job.title} by {self.name}"

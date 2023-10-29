@@ -53,34 +53,47 @@
                     </div>
                     
 
-                    <!-- Application Start -->
-                    <div class="">
-                        <h4 class="mb-4">Apply For The Job</h4>
-                        <form method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="row g-3">
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Your Name" name="name">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control" placeholder="Your Email" name="email">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Portfolio Website" name="portfolio">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="file" class="form-control bg-white" name="resume">
-                                </div>
-                                <div class="col-12">
-                                    <textarea class="form-control" rows="5" placeholder="Cover Letter" name="cover_letter"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary w-100" type="submit">Apply Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Application End -->
+<!-- Application Form Start -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row g-3">
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Name" name="name" value="">
+                {{ form.name.errors }}
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Your Email" name="email" value="">
+                {{ form.email.errors }}
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Portfolio Website" name="portfolio" value="">
+                {{ form.portfolio.errors }}
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <input type="file" class="form-control bg-white" name="resume">
+                {{ form.resume.errors }}
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <textarea class="form-control" rows="5" placeholder="Cover Letter" name="cover_letter" value=""></textarea>
+                {{ form.cover_letter.errors }}
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary w-100" type="submit">Apply Now</button>
+        </div>
+    </div>
+</form>
+<!-- Application Form End -->
+
                 </div>
             </div>
         </div>

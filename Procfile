@@ -1,1 +1,2 @@
-web: gunicorn xyz.wsgi --access-logfile - --error-logfile -
+release: python manage.py migrate
+web: gunicorn xyz.wsgi

@@ -1,10 +1,10 @@
 /********** Template CSS **********/
 :root {
-    --primary: #ff0000;
-    --secondary: #ff0000;
+    /* --primary: #0000ff;
+    --secondary: #0000ff; */
     
-    /* --primary: #0000ff; 
-    --secondary: #0000ff;  */
+    --primary: #0000ff; 
+    --secondary: #0000ff; 
    
     --light: #EFFDF5;
     --dark: #2B3940;
@@ -47,7 +47,7 @@
 }
 /* Override Bootstrap's default primary button hover color */
 .btn-primary:hover {
-    background-color: #ff0000;
+    background-color: #0000ff;
     color: #FFFFFF;
 }
 

@@ -119,6 +119,10 @@ import os
 
 # Define the URL prefix for static files
 STATIC_URL = '/static/'
+# settings.py
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Define the root directory where your static files are stored
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]

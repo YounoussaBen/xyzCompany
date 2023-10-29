@@ -1,7 +1,28 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from .forms import ContactForm
+from .models import JobCategory, Job, Company
 # Create your views here.
+
+
+
+def home_view(request):
+    # Get categories and job listings, customize this as needed
+    categories = JobCategory.objects.all()
+    job_listings = Job.objects.all()
+    companies = Company.objects.all()
+
+    # Prepare data to pass to the template
+    context = {
+        'categories': categories,
+        'job_listings': job_listings,
+        'companies': companies, 
+        
+    }
+
+    return render(request, 'home.html', context)
+
+
 
 def about_view(request):
     return render(request, 'about.html')

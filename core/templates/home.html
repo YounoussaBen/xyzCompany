@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 bg-dark">
+        <div class="owl-carousel header-carousel position-relative">
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="{% static 'img/image.png' %}" alt="">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-10 col-lg-8">
+                                <h1 class="display-3 text-white animated slideInDown mb-4">Let Us Help You Find Your Dream Job!</h1>
+                                <p class="fs-5 fw-medium text-white mb-4 pb-2">We are dedicated to helping you find the perfect job opportunity. Our commitment is to provide exceptional support throughout your job search journey. Join us and take the first step towards your dream career today.</p>
+                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search for Jobs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+    <!-- Category Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Our Categories</h1>
+            <div class="row g-4">
+                {% for category in categories %}
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1">
+                    <a class="cat-item rounded p-4" href="">
+                        <i class="{{ category.icon }} text-primary fa-3x mb-4"></i>
+                        <h6 class="mb-3">{{ category.name }}</h6>
+                        <p class="mb-0 text-primary">{{ category.vacancy }} Vacancies</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Category End -->
+
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="container align-items-center">
+                <h1 class="mb-4">About Us</h1>
+                <p>XYZ Company is a leading online platform dedicated to revolutionizing human resource recruitment. We are committed to connecting exceptional talents with remarkable opportunities. Our mission is to provide an intuitive platform that empowers job seekers to fulfill their career aspirations while enabling businesses to discover the ideal candidates for growth and success.</p>
+                <p>At XYZ Company, we:</p>
+                <a class="btn btn-primary py-3 px-5 mt-3" href="#">Learn More</a>
+
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+<!-- Jobs Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job Listing</h1>
+        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+            <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
+                <li class="nav-item">
+                    <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
+                        <h6 class="mt-n1 mb-0">Full Time</h6>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-2">
+                        <h6 class="mt-n1 mb-0">Part Time</h6>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <!-- Display up to three Full Time Job Listings -->
+                    {% for job in job_listings %}
+                        {% if job.job_type == 'Full Time' and forloop.counter <= 3 %}
+                            <div class="job-item p-4 mb-4">
+                                <div class="row g-4">
+                                    <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid border rounded" src="{{ job.company.logo.url }}" alt="Company Logo" style="width: 80px; height: 80px;">
+                                        <div class="text-start ps-4">
+                                            <h5 class="mb-3">{{ job.title }}</h5>
+                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt me-2"></i>{{ job.location }}</span>
+                                            <span class="text-truncate me-3"><i class="far fa-clock me-2"></i>Full Time</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                        <div class="d-flex mb-3">
+                                            <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
+                                            <a class="btn btn-primary" href="{{ job.link }}">Apply Now</a>
+                                        </div>
+                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ job.deadline }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <a class="btn btn-primary py-3 px-5" href="">Browse More Full Time Jobs</a>
+                </div>
+                <div id="tab-2" class="tab-pane fade show p-0">
+                    <!-- Display up to three Part Time Job Listings -->
+                    {% for job in job_listings %}
+                        {% if job.job_type == 'Part Time' and forloop.counter <= 3 %}
+                            <div class="job-item p-4 mb-4">
+                                <div class="row g-4">
+                                    <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid border rounded" src="{{ job.company.logo.url }}" alt="Company Logo" style="width: 80px; height: 80px;">
+                                        <div class="text-start ps-4">
+                                            <h5 class="mb-3">{{ job.title }}</h5>
+                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt me-2"></i>{{ job.location }}</span>
+                                            <span class="text-truncate me-3"><i class="far fa-clock me-2"></i>Part Time</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                        <div class="d-flex mb-3">
+                                            <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
+                                            <a class="btn btn-primary" href="{{ job.link }}">Apply Now</a>
+                                        </div>
+                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ job.deadline }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <a class="btn btn-primary py-3 px-5" href="">Browse More Part Time Jobs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Jobs End -->
+
+
+{% endblock %}

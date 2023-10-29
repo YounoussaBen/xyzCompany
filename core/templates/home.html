@@ -30,7 +30,7 @@
             <div class="row g-4">
                 {% for category in categories %}
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1">
-                    <a class="cat-item rounded p-4" href="">
+                    <a class="cat-item rounded p-4" href="{% url 'category' category_id=category.id %}">
                         <i class="{{ category.icon }} text-primary fa-3x mb-4"></i>
                         <h6 class="mb-3">{{ category.name }}</h6>
                         <p class="mb-0 text-primary">{{ category.vacancy }} Vacancies</p>
@@ -48,7 +48,6 @@
             <div class="container align-items-center">
                 <h1 class="mb-4">About Us</h1>
                 <p>XYZ Company is a leading online platform dedicated to revolutionizing human resource recruitment. We are committed to connecting exceptional talents with remarkable opportunities. Our mission is to provide an intuitive platform that empowers job seekers to fulfill their career aspirations while enabling businesses to discover the ideal candidates for growth and success.</p>
-                <p>At XYZ Company, we:</p>
                 <a class="btn btn-primary py-3 px-5 mt-3" href="#">Learn More</a>
 
             </div>
@@ -77,7 +76,7 @@
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <!-- Display up to three Full Time Job Listings -->
                     {% for job in job_listings %}
-                        {% if job.job_type == 'Full Time' and forloop.counter <= 3 %}
+                        {% if job.job_type == 'Full Time' and forloop.counter <= 4 %}
                             <div class="job-item p-4 mb-4">
                                 <div class="row g-4">
                                     <div class="col-sm-12 col-md-8 d-flex align-items-center">
@@ -91,7 +90,7 @@
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
                                             <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                            <a class="btn btn-primary" href="{{ job.link }}">Apply Now</a>
+                                            <a class="btn btn-primary" href="{% url 'job_detail' job.id %}">Apply Now</a>
                                         </div>
                                         <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ job.deadline }}</small>
                                     </div>
@@ -104,7 +103,7 @@
                 <div id="tab-2" class="tab-pane fade show p-0">
                     <!-- Display up to three Part Time Job Listings -->
                     {% for job in job_listings %}
-                        {% if job.job_type == 'Part Time' and forloop.counter <= 3 %}
+                        {% if job.job_type == 'Part Time' and forloop.counter <= 5 %}
                             <div class="job-item p-4 mb-4">
                                 <div class="row g-4">
                                     <div class="col-sm-12 col-md-8 d-flex align-items-center">
@@ -118,7 +117,7 @@
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
                                             <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                            <a class="btn btn-primary" href="{{ job.link }}">Apply Now</a>
+                                            <a class="btn btn-primary" href="{% url 'job_detail' job.id %}">Apply Now</a>
                                         </div>
                                         <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ job.deadline }}</small>
                                     </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
 from .forms import ContactForm
 from .models import JobCategory, Job, Company
@@ -22,7 +22,28 @@ def home_view(request):
 
     return render(request, 'home.html', context)
 
+def category_view(request, category_id):
+    # Retrieve the selected category based on its ID
+    category = get_object_or_404(JobCategory, pk=category_id)
 
+    # Retrieve the jobs associated with the selected category
+    jobs = Job.objects.filter(categories=category)
+
+    context = {
+        'category': category,
+        'jobs': jobs,
+    }
+
+    return render(request, 'category.html', context)
+
+def job_detail(request, job_id):
+    job = get_object_or_404(Job, pk=job_id)
+    
+    context = {
+        'job': job,
+    }
+    
+    return render(request, 'job_detail.html', context)
 
 def about_view(request):
     return render(request, 'about.html')

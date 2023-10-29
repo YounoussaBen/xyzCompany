@@ -1,3 +1,4 @@
+import os
 """
 Django settings for xyz project.
 
@@ -115,7 +116,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-import os
+
 
 # Define the URL prefix for static files
 STATIC_URL = '/static/'

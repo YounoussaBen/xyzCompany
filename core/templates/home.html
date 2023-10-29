@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
-                                            <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
+                                            
                                             <a class="btn btn-primary" href="{% url 'job_detail' job.id %}">Apply Now</a>
                                         </div>
                                         <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ job.deadline }}</small>
@@ -98,12 +98,12 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                    <a class="btn btn-primary py-3 px-5" href="">Browse More Full Time Jobs</a>
+                    <a class="btn btn-primary py-3 px-5" href="{% url 'full_time_jobs' %}">Browse More Full Time Jobs</a>
                 </div>
                 <div id="tab-2" class="tab-pane fade show p-0">
                     <!-- Display up to three Part Time Job Listings -->
                     {% for job in job_listings %}
-                        {% if job.job_type == 'Part Time' and forloop.counter <= 5 %}
+                        {% if job.job_type == 'Part Time' %}
                             <div class="job-item p-4 mb-4">
                                 <div class="row g-4">
                                     <div class="col-sm-12 col-md-8 d-flex align-items-center">
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
-                                            <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
+                                            
                                             <a class="btn btn-primary" href="{% url 'job_detail' job.id %}">Apply Now</a>
                                         </div>
                                         <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ job.deadline }}</small>
@@ -125,7 +125,7 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                    <a class="btn btn-primary py-3 px-5" href="">Browse More Part Time Jobs</a>
+                    <a class="btn btn-primary py-3 px-5" href="{% url 'part_time_jobs' %}">Browse More Part Time Jobs</a>
                 </div>
             </div>
         </div>

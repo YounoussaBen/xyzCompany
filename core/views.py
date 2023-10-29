@@ -45,11 +45,16 @@ def job_detail(request, job_id):
     
     return render(request, 'job_detail.html', context)
 
+def full_time_jobs(request):
+    full_time_jobs = Job.objects.filter(job_type='Full Time')
+    return render(request, 'job_list.html', {'jobs': full_time_jobs, 'category_name': 'Full Time Jobs'})
+
+def part_time_jobs(request):
+    part_time_jobs = Job.objects.filter(job_type='Part Time')
+    return render(request, 'job_list.html', {'jobs': part_time_jobs, 'category_name': 'Part Time Jobs'})
+
 def about_view(request):
     return render(request, 'about.html')
-
-
-
 
 def contact_view(request):
     if request.method == 'POST':

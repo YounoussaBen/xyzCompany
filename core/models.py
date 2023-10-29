@@ -3,7 +3,7 @@ from django.db import models
 # Define a Company model to store company information, including the logo and email
 class Company(models.Model):
     name = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='static/company_logos/')
+    logo = models.ImageField(upload_to='company_logos/')
     email = models.EmailField()
 
     def __str__(self):

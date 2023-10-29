@@ -43,7 +43,7 @@
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-            <a href="" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
+            <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
                 <h1 class="m-0 text-primary">XYZ Company</h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -51,9 +51,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="" class="nav-item nav-link active">Home</a>
-                    <a href="" class="nav-item nav-link">About</a>
-                    <a href="" class="nav-item nav-link">Contact</a>
+                    <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                    <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                    <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
                 </div>
             </div>
         </nav>
@@ -68,16 +68,12 @@
                 <div class="row g-3">
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Company</h5>
-                        <a class="btn btn-link text-white-50" href="">About Us</a>
-                        <a class="btn btn-link text-white-50" href="">Contact Us</a>
                         <a class="btn btn-link text-white-50" href="#">Privacy Policy</a>
                         <a class="btn btn-link text-white-50" href="#">Terms & Condition</a>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Quick Links</h5>
-                        <a class="btn btn-link text-white-50" href="#">Privacy Policy</a>
-                        <a class="btn btn-link text-white-50" href="#">Terms & Condition</a>
-                        <a class="btn btn-link text-white-50" href="#">Admin Panel</a>
+                        <a class="btn btn-link text-white-50" href="{% url 'admin:index'  %}">Admin Panel</a>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Contact</h5>
@@ -94,15 +90,14 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">XYZ Company</a>, All Right Reserved. 
+                            &copy; <a class="border-bottom" href="{% url 'about' %}">XYZ Company</a>, All Right Reserved. 
 							 
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
+                                <a href="{% url 'home' %}">Home</a>
+                                <a href="{% url 'contact' %}">Help</a>
+                                <a href="{% url 'contact' %}">FQAs</a>
                             </div>
                         </div>
                     </div>

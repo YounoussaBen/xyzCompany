@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- Header End -->
+{% load filter %}
+
+<!-- Header End -->
     <div class="container-xxl py-5 bg-dark page-header mb-5">
         <div class="container my-5 pt-5 pb-4">
             <h1 class="display-3 text-white mb-3 animated slideInDown">{{ job.title }}</h1>
@@ -21,7 +23,7 @@
             <div class="row gy-5 gx-4">
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-5">
-                        <img class="flex-shrink-0 img-fluid border rounded" src="{{ job.logo.url }}" alt="{{ job.title }} logo" style="width: 80px; height: 80px;">
+                        <img class="flex-shrink-0 img-fluid border rounded" src="{{ job.company.logo.url }}" alt="{{ job.title }} logo" style="width: 80px; height: 80px;">
                         <div class="text-start ps-4">
                             <h3 class="mb-3">{{ job.title }}</h3>
                             <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ job.location }}</span>
@@ -34,21 +36,22 @@
                     <div class="mb-5">
                         <h4 class="mb-3">Job description</h4>
                         <p>{{ job.description }}</p>
-                        <h4 class="mb-3">Responsibility</h4>
-                        <p>{{ job.responsibilities }}</p>
+                        
+                        <h4 class="mb-3">Responsibilities</h4>
                         <ul class="list-unstyled">
-                            {% for responsibility_point in job.responsibility_points %}
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>{{ responsibility_point }}</li>
+                            {% for responsibility_point in job.responsibilities|split_sentences %}
+                                <li><i class="fa fa-angle-right text-primary me-2"></i>{{ responsibility_point|safe }}</li>
                             {% endfor %}
                         </ul>
+                        
                         <h4 class="mb-3">Qualifications</h4>
-                        <p>{{ job.qualifications }}</p>
                         <ul class="list-unstyled">
-                            {% for qualification_point in job.qualification_points %}
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>{{ qualification_point }}</li>
+                            {% for qualification_point in job.qualifications|split_sentences %}
+                                <li><i class="fa fa-angle-right text-primary me-2"></i>{{ qualification_point|safe }}</li>
                             {% endfor %}
                         </ul>
                     </div>
+                    
 
                     <!-- Application Start -->
                     <div class="">

@@ -48,7 +48,7 @@
             <div class="container align-items-center">
                 <h1 class="mb-4">About Us</h1>
                 <p>XYZ Company is a leading online platform dedicated to revolutionizing human resource recruitment. We are committed to connecting exceptional talents with remarkable opportunities. Our mission is to provide an intuitive platform that empowers job seekers to fulfill their career aspirations while enabling businesses to discover the ideal candidates for growth and success.</p>
-                <a class="btn btn-primary py-3 px-5 mt-3" href="#">Learn More</a>
+                <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'about' %}">Learn More</a>
 
             </div>
         </div>
@@ -90,7 +90,7 @@
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
                                             
-                                            <a class="btn btn-primary" href="{% url 'job_detail' job.id %}">Apply Now</a>
+                                            <a class="btn btn-primary" href="{% url 'job_detail' job.id %}">Apply</a>
                                         </div>
                                         <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ job.deadline }}</small>
                                     </div>
@@ -117,7 +117,7 @@
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
                                             
-                                            <a class="btn btn-primary" href="{% url 'job_detail' job.id %}">Apply Now</a>
+                                            <a class="btn btn-primary" href="{% url 'job_detail' job.id %}">Apply</a>
                                         </div>
                                         <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ job.deadline }}</small>
                                     </div>

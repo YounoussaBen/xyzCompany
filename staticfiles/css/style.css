@@ -1,17 +1,13 @@
 /********** Template CSS **********/
 :root {
-    --primary: #ff0000;
-    /* --primary: #0000ff; */
-    /* --primary: #00B074; */
-    --secondary: #ff0000;
+    /* --primary: #ff0000;
+    --secondary: #ff0000; */
+    
+    --primary: #0000ff; 
+    --secondary: #0000ff; 
+   
     --light: #EFFDF5;
     --dark: #2B3940;
-}
-/* Remove the green background color on button click (active state) */
-.btn-primary:active,
-.btn-primary:focus {
-    background-color: red; /* Use the desired red color */
-    border-color: red; /* Set the border color to match the background color */
 }
 
 .back-to-top {

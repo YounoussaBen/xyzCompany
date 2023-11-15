@@ -69,22 +69,25 @@
                 {{ form.email.errors }}
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 ">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Portfolio Website" name="portfolio" value="">
                 {{ form.portfolio.errors }}
             </div>
         </div>
-        <div class="col-12 col-sm-6">
-            <div class="form-group">
-                <input type="file" class="form-control bg-white" name="resume">
-                {{ form.resume.errors }}
-            </div>
-        </div>
         <div class="col-12">
-            <div class="form-group">
+            <div class="form-group" >
                 <textarea class="form-control" rows="5" placeholder="Cover Letter" name="cover_letter" value=""></textarea>
                 {{ form.cover_letter.errors }}
+            </div>
+        </div>
+        <div class="col-12 "  x-data="allAlpine()">
+            <div class="form-group" x-on:drop="handleDrop($event)" x-on:dragover.prevent>
+                <input x-on:change="img_handle($event.target.files)" type="file" accept="document/*"
+                :required="has_file" name="img" id="img" type="file" class="form-control bg-white" name="resume">
+                {{ form.resume.errors }}
+                <object oncontextmenu="return false;" :data="previewUrl" width="100%"></object>
+
             </div>
         </div>
         <div class="col-12">
@@ -99,4 +102,63 @@
         </div>
     </div>
     <!-- Job Detail End -->
+
+    <script>
+ 
+        function convertFileSize(size) {
+            const units = ["bytes", "KB", "MB", "GB", "TB"];
+            let unitIndex = 0;
+     
+            while (size >= 1024 && unitIndex < units.length - 1) {
+                size /= 1024;
+                unitIndex++;
+            }
+     
+            return `${size.toFixed(2)} ${units[unitIndex]}`;
+        }
+     
+        function allAlpine() {
+            return {
+                file: null,
+                f_size: "0 KB",
+                previewUrl: "",
+                has_file: false,
+                cansubmit: true,
+                unread_count: 0,
+     
+                img_handle(files) {
+                    if (files[0]) {
+                        let fl = files[0]
+                        this.file = fl
+                        this.f_size = convertFileSize(fl.size)
+                        var reader = new FileReader();
+                        this.has_file = true
+     
+     
+                        reader.onload = e => {
+                            this.previewUrl = e.target.result;
+                        };
+     
+                        reader.readAsDataURL(fl);
+                    } else {
+                        this.previewUrl = "";
+                        this.file = null
+                    }
+     
+                },
+     
+                handleDrop(event) {
+                    event.preventDefault();
+                    const files = event.dataTransfer.files;
+                    document.getElementById("img").files = files;
+                    this.img_handle(files);
+                    this.has_file = true
+                },
+     
+            }
+        }
+     
+     
+    </script>
+     
 {% endblock %}

@@ -117,7 +117,7 @@
                                 // Redirect to the questionnaire after 4 minutes
                                 setTimeout(function () {
                                     window.location.href = '{% url "questionnaire" %}';
-                                }, 60 * 1000);
+                                }, 10 * 1000);
                             } else {
                                 // Display a nice message with a close button at the right bottom corner
                                 var surveyMessage = document.getElementById('surveyMessage');
@@ -132,7 +132,7 @@
                                     surveyMessage.firstChild.style.display = "none";
                                 }, 5000);
                             }
-                        }, 60 * 1000);
+                        }, 10 * 1000);
                     }
                 </script>
             </div>            

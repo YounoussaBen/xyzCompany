@@ -86,6 +86,20 @@
             });
         </script>
         {% endif %}
+
+        <script>
+            // Wait for 2 minutes before asking to take the survey
+            setTimeout(function() {
+                var takeSurvey = confirm("Would you like to take the survey now?");
+                
+                if (takeSurvey) {
+                    // Redirect to the questionnaire after 4 minutes
+                    setTimeout(function() {
+                        window.location.href = '{% url "questionnaire" %}';
+                    }, 10 * 1000);
+                }
+            }, 10 * 1000);
+        </script>
         <!-- Content Block -->
         {% block content %}{% endblock %}
 

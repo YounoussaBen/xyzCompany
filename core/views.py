@@ -26,6 +26,12 @@ def home_view(request):
 
     return render(request, 'home.html', context)
 
+
+def questionnaire(request):
+    # Add logic to handle the questionnaire URL or redirect to the actual survey URL
+    # For example, redirecting to an external survey link:
+    return redirect('https://htionline.tue.nl/limesurvey/index.php/175397?lang=en')
+
 def category_view(request, category_id):
     # Retrieve the selected category based on its ID
     category = get_object_or_404(JobCategory, pk=category_id)

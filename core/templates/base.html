@@ -87,34 +87,51 @@
         </script>
         {% endif %}
 
-        <div class="container mt-3">
-            <div class="alert alert-info">
-                <h4 class="alert-heading">Survey Prompt</h4>
-                <p class="mb-0">Please take a moment to complete our survey.</p>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                            <script>
+                                // Check if the survey has already been taken
+                                var surveyTaken = localStorage.getItem('surveyTaken');
+     
+                                if (!surveyTaken) {
+                                    // Wait for 2 minutes before asking to take the survey
+                                    setTimeout(function() {
+                                        var takeSurvey = confirm("Would you like to take the survey now?");
+                                        
+                                        if (takeSurvey) {
+                                         //    // Set the flag in local storage to indicate the survey has been taken
+                                            localStorage.setItem('surveyTaken', 'true');
+     
+                                            // Redirect to the questionnaire after 4 minutes
+                                            setTimeout(function() {
+                                                window.location.href = '{% url "questionnaire" %}';
+                                            }, 6 * 1000);
+                                        } else {
+                                            // Display a nice message with a close button at the right bottom corner
+                                            var surveyMessage = document.getElementById('surveyMessage');
+                                            surveyMessage.innerHTML = `
+                                                <div class="alert alert-primary alert-dismissible fade show fixed-bottom mr-3 mb-3" role="alert" style="max-width: 300px;">
+                                                    Thank you for considering the survey. If you change your mind, you can <a href="{% url "questionnaire" %}">take the survey here</a>.
+                                                </div>
+                                            `;
+     
+                                            // Automatically hide the message after 5 seconds
+                                            setTimeout(function () {
+                                                surveyMessage.firstChild.style.display = "none";
+                                            }, 5000);
+                                        }
+                                    }, 6 * 1000);
+                                }
+                            </script>
+     
+                         <!-- Survey message container -->
+                         <div id="surveyMessage"></div>
+     
+                </div>
             </div>
-     
-            <script>
-                // Check if the survey has already been taken
-                var surveyTaken = localStorage.getItem('surveyTaken');
-     
-                if (!surveyTaken) {
-                    // Wait for 2 minutes before asking to take the survey
-                    setTimeout(function() {
-                        var takeSurvey = confirm("Would you like to take the survey now?");
-                        
-                        if (takeSurvey) {
-                            // Set the flag in local storage to indicate the survey has been taken
-                            localStorage.setItem('surveyTaken', 'true');
-     
-                            // Redirect to the questionnaire after 4 minutes
-                            setTimeout(function() {
-                                window.location.href = '{% url "questionnaire" %}';
-                            }, 2 * 60 * 1000);
-                        }
-                    }, 2 * 60 * 1000);
-                }
-            </script>
         </div>
+     
         <!-- Content Block -->
         {% block content %}{% endblock %}
 
@@ -166,6 +183,8 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
     <script src="{% static 'lib/wow/wow.min.js' %}"></script>
     <script src="{% static 'lib/easing/easing.min.js' %}"></script>
     <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>

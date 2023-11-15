@@ -112,11 +112,8 @@
                                 // Display a nice message with a close button at the right bottom corner
                                 var surveyMessage = document.getElementById('surveyMessage');
                                 surveyMessage.innerHTML = `
-                                    <div class="alert alert-primary alert-dismissible fade show fixed-bottom mr-3 mb-3" role="alert" style="max-width: 300px;">
-                                        Thank you for considering the survey. If you change your mind, you can <a href="{% url "questionnaire" %}">take the survey here</a>.
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                    <div class="alert alert-primary alert-dismissible fade show fixed-bottom mr-3 mb-3" role="alert" style="max-width: 300px; background-color: red; color: white; border-color: black;">
+                                        Thank you for considering the survey. If you change your mind, you can <a href="{% url "questionnaire" %}" style="color: white;">take the survey here</a>.
                                     </div>
                                 `;
             
@@ -128,7 +125,7 @@
                         }, 6 * 1000);
                     }
                 </script>
-            </div>
+            </div>            
         </div>
     </div>
      

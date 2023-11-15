@@ -88,48 +88,49 @@
         {% endif %}
 
 
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                            <script>
-                                // Check if the survey has already been taken
-                                var surveyTaken = localStorage.getItem('surveyTaken');
-     
-                                if (!surveyTaken) {
-                                    // Wait for 2 minutes before asking to take the survey
-                                    setTimeout(function() {
-                                        var takeSurvey = confirm("Would you like to take the survey now?");
-                                        
-                                        if (takeSurvey) {
-                                         //    // Set the flag in local storage to indicate the survey has been taken
-                                            localStorage.setItem('surveyTaken', 'true');
-     
-                                            // Redirect to the questionnaire after 4 minutes
-                                            setTimeout(function() {
-                                                window.location.href = '{% url "questionnaire" %}';
-                                            }, 6 * 1000);
-                                        } else {
-                                            // Display a nice message with a close button at the right bottom corner
-                                            var surveyMessage = document.getElementById('surveyMessage');
-                                            surveyMessage.innerHTML = `
-                                                <div class="alert alert-primary alert-dismissible fade show fixed-bottom mr-3 mb-3" role="alert" style="max-width: 300px;">
-                                                    Thank you for considering the survey. If you change your mind, you can <a href="{% url "questionnaire" %}">take the survey here</a>.
-                                                </div>
-                                            `;
-     
-                                            // Automatically hide the message after 5 seconds
-                                            setTimeout(function () {
-                                                surveyMessage.firstChild.style.display = "none";
-                                            }, 5000);
-                                        }
-                                    }, 6 * 1000);
-                                }
-                            </script>
-     
-                         <!-- Survey message container -->
-                         <div id="surveyMessage"></div>
-     
-                </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div id="surveyMessage">
+                <script>
+                    // Check if the survey has already been taken
+                    var surveyTaken = localStorage.getItem('surveyTaken');
+            
+                    if (!surveyTaken) {
+                        // Wait for 2 minutes before asking to take the survey
+                        setTimeout(function () {
+                            var takeSurvey = confirm("Would you like to take the survey now?");
+            
+                            if (takeSurvey) {
+                                // Set the flag in local storage to indicate the survey has been taken
+                                localStorage.setItem('surveyTaken', 'true');
+            
+                                // Redirect to the questionnaire after 4 minutes
+                                setTimeout(function () {
+                                    window.location.href = '{% url "questionnaire" %}';
+                                }, 3 * 1000);
+                            } else {
+                                // Display a nice message with a close button at the right bottom corner
+                                var surveyMessage = document.getElementById('surveyMessage');
+                                surveyMessage.innerHTML = `
+                                    <div class="alert alert-primary alert-dismissible fade show fixed-bottom mr-3 mb-3" role="alert" style="max-width: 300px;">
+                                        Thank you for considering the survey. If you change your mind, you can <a href="{% url "questionnaire" %}">take the survey here</a>.
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                `;
+            
+                                // Automatically hide the message after 5 seconds
+                                setTimeout(function () {
+                                    surveyMessage.firstChild.style.display = "none";
+                                }, 5000);
+                            }
+                        }, 6 * 1000);
+                    }
+                </script>
             </div>
+        </div>
+    </div>
      
         <!-- Content Block -->
         {% block content %}{% endblock %}

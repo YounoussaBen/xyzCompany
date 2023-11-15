@@ -3,11 +3,11 @@ from django.core.mail import send_mail
 from .forms import ContactForm
 from .models import JobCategory, Job, Company
 from django.core.mail import send_mail, EmailMessage
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .models import Job
 from .forms import JobApplicationForm
 import mimetypes
+from django.contrib import messages
 
 
 def home_view(request):
@@ -91,7 +91,11 @@ def job_detail(request, job_id):
                 fail_silently=False,
             )
 
+            messages.success(request, "Application Submitted")
             return redirect('home')  # Redirect to the home page after sending the email
+
+        else:
+            messages.error(request, "Application Error")
 
     else:
         form = JobApplicationForm()

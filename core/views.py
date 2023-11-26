@@ -58,7 +58,7 @@ def job_detail(request, job_id):
                       f'Portfolio: {application.portfolio}\n' \
                       f'Cover Letter:\n{application.cover_letter}\n'
 
-            from_email = 'ads21b00266y@ait.edu.gh'  # Sender's email
+            from_email = 'felixkoranteng290@gmail.com'  # Sender's email
             recipient_list = [job.company.email]  # Company's email
 
             # Attach the resume file
@@ -80,7 +80,7 @@ def job_detail(request, job_id):
             send_mail(
                 'Application Received',
                 'Your job application has been received. We will get in touch with you soon.',
-                'ads21b00266y@ait.edu.gh',  # Sender's email
+                'felixkoranteng290@gmail.com',  # Sender's email
                 [application.email],  # User's email
                 fail_silently=False,
             )

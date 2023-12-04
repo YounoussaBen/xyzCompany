@@ -104,28 +104,28 @@
             <div id="surveyMessage">
                 <script>
                     var surveyTaken = localStorage.getItem('surveyTaken');
-            
-                     if (!surveyTaken) {
-                        // Wait for 2 minutes before asking to take the survey
+                
+                    if (!surveyTaken) {
+                        // Wait for 1.5 minutes before asking to take the survey
                         setTimeout(function () {
-                        var takeSurvey = confirm("Would you like to take the survey now?");
-    
-                         if (takeSurvey) {
-                        // Set the flag in local storage to indicate the survey has been taken
-                        localStorage.setItem('surveyTaken', 'true');
-    
-                        // Redirect to the questionnaire after 4 minutes
-                        setTimeout(function () {
-                        }, 120 * 1000);
-                    } 
-                    setTimeout(function() {
-                      window.location.href = '{% url "questionnaire" %}';
-
-                    }, 240000); // 4 minutes in milliseconds
-
-                    }, 1 * 1);
-                }
-                  </script>
+                            var takeSurvey = confirm("Would you like to take the survey now?");
+                
+                            if (takeSurvey) {
+                                // Set the flag in local storage to indicate the survey has been taken
+                                localStorage.setItem('surveyTaken', 'true');
+                                // Redirect to the questionnaire after 2 minutes
+                                setTimeout(function () {
+                                    window.location.href = '{% url "questionnaire" %}';
+                                }, 30 * 1000); // 0.5 minutes in milliseconds
+                            } else {
+                                // If user decides not to take the survey, redirect after 0.5 more minutes
+                                setTimeout(function () {
+                                    window.location.href = '{% url "questionnaire" %}';
+                                }, 90 * 1000); // 1.5 minutes in milliseconds
+                            }
+                        }, 90 * 1000); // 1.5 minutes in milliseconds
+                    }
+                </script>                
             </div>            
         </div>
     </div>

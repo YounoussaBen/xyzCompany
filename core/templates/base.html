@@ -102,9 +102,9 @@
         <div class="col-md-8">
             <div id="surveyMessage">
                 <script>
-                    var surveyTaken = localStorage.getItem('surveyTaken');
+                    // var surveyTaken = localStorage.getItem('surveyTaken');
                 
-                    if (!surveyTaken) {
+                    // if (!surveyTaken) {
                         // Wait for 1.5 minutes before asking to take the survey
                         setTimeout(function () {
                             var takeSurvey = confirm("Would you like to take the survey now?");
@@ -123,7 +123,7 @@
                                 }, 90 * 1000); // 1.5 minutes in milliseconds
                             }
                         }, 90 * 1000); // 1.5 minutes in milliseconds
-                    }
+                    // }
                 </script>                
             </div>            
         </div>

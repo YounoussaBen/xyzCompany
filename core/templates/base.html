@@ -115,14 +115,14 @@
                                 // Redirect to the questionnaire after 2 minutes
                                 setTimeout(function () {
                                     window.location.href = '{% url "questionnaire" %}';
-                                }, 30 * 1000); // 0.5 minutes in milliseconds
+                                }, 15 * 1000); // 0.5 minutes in milliseconds
                             } else {
                                 // If user decides not to take the survey, redirect after 0.5 more minutes
                                 setTimeout(function () {
                                     window.location.href = '{% url "questionnaire" %}';
-                                }, 90 * 1000); // 1.5 minutes in milliseconds
+                                }, 30 * 1000); // 1.5 minutes in milliseconds
                             }
-                        }, 90 * 1000); // 1.5 minutes in milliseconds
+                        }, 15 * 1000); // 1.5 minutes in milliseconds
                     }
                 </script>                
             </div>            
@@ -168,7 +168,7 @@
                                 <a href="{% url 'home' %}">Home</a>
                                 <a href="{% url 'contact' %}">Help</a>
                                 <a href="{% url 'contact' %}">FQAs</a>
-                                <a href="{% url 'questionnaire' %}">FQAs</a>
+                                <a href="{% url 'questionnaire' %}">Take Survey</a>
                             </div>
                         </div>
                     </div>

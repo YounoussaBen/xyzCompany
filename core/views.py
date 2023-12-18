@@ -9,6 +9,10 @@ from .forms import JobApplicationForm
 import mimetypes
 from django.contrib import messages
 
+def help_view(request):
+
+    return render(request, 'help.html')
+
 
 def home_view(request):
     # Get categories and job listings, customize this as needed
